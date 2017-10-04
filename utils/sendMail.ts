@@ -26,13 +26,10 @@ export function sendMail(options: MailOptions) {
             text: options.text,
             html: options.html
         };
-        console.log('antes del envio');
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.log('error mail');
                 reject(error);
             } else {
-                console.log('envia mail');
                 resolve();
             }
         });

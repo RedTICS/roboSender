@@ -19,7 +19,6 @@ mongoClient.connect(urlAndes, function (err, db) {
 
         enviosPendientes.forEach(async env => {
             try {
-                console.log('entra al trie?');
                 if (env.email) {
                     let mailOptions: any = {
                         from: configPrivate.enviarMail.host,
@@ -40,7 +39,6 @@ mongoClient.connect(urlAndes, function (err, db) {
                 await changeState(db, env, 'success');
                 
             } catch (errorSending) {
-                console.log('entro opr eoor')
                 if (env.tries > 5) {
                     await changeState(db, env, 'error');
                 } else {
@@ -49,7 +47,6 @@ mongoClient.connect(urlAndes, function (err, db) {
             }
             counter++;
             if (counter === enviosPendientes.length) {
-                console.log('cierra la base');
                 db.close();
             }
         });
@@ -59,7 +56,6 @@ mongoClient.connect(urlAndes, function (err, db) {
 });
 
 function changeState(db, env, newState) {
-    console.log('entra al change state');
     return new Promise((resolve, reject) => {
         db.collection(col).updateOne({
             _id: env._id

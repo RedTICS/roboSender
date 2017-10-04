@@ -53,7 +53,6 @@ export function sendSms(smsOptions: SmsOptions) {
                                 let xmlDato = xmlDoc.get('//dato');
                                 carrier = operador(xmlDato.text());
                             } catch (ee) {
-                                console.log('ERROR DE PARSEO 2: ', ee, smsOptions.telefono);
                                 return reject(ee);
                             }
     

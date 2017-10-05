@@ -48,6 +48,7 @@ mongoClient.connect(urlAndes, function (err, db) {
             counter++;
             if (counter === enviosPendientes.length) {
                 db.close();
+                console.log('Proceso finalizado: ', Date.now())
             }
         });
         
